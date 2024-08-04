@@ -1,8 +1,21 @@
- # Training System
+# PARALLELISM SCHEMES FOR LLM TRAINING
 
+## Introduction
+We investigate various parallelism schemes proposed to enhance the utilization of HPC clusters for LLM training.
 
-## Hybird Parallelism 
-### Data Parallelism
+## Content 
+
+- Hybird Parallelism 
+    - Data Parallelism
+    - Tensor Parallelism
+    - Pipeline Parallelism
+    - Sequence Parallelism
+
+- Auto Parallelism
+- Heterogeneous Parallelism
+
+### Hybird Parallelism 
+#### Data Parallelism
 
 - PyTorch\-DDP: Pytorch distributed: Experiences on accelerating data parallel training [[pdf]](https://arxiv.org/pdf/2006.15704) [[GitHub]]()
     - arXiv preprint arXiv:2006.15704, 2020.
@@ -29,7 +42,7 @@
     - Zhen Zhang, Shuai Zheng, Yida Wang, Justin Chiu, George Karypis, Trishul Chilimbi, Mu Li, Xin Jin
 
 
-### Tensor Parallelism
+#### Tensor Parallelism
 - Megatron-lm: Training multi-billion parameter language models using model parallelism [[pdf](https://arxiv.org/abs/1909.08053)]
     - arXiv preprint arXiv:1909.08053, 2019
     - Mohammad Shoeybi, Mostofa Patwary, Raul Puri, Patrick LeGresley, Jared Casper, Bryan Catanzaro
@@ -47,7 +60,7 @@
     - Zhengda Bian, Qifan Xu, Boxiang Wang, Yang You
 
 
-### Pipeline Parallelism
+#### Pipeline Parallelism
 - Gpipe: Efficient training of giant neural networks using pipeline parallelism [[pdf](https://arxiv.org/abs/1811.06965)]
     - Advances in neural information processing systems
     - Yanping Huang, Youlong Cheng, Ankur Bapna, Orhan Firat, Mia Xu Chen, Dehao Chen, HyoukJoong Lee, Jiquan Ngiam, Quoc V. Le, Yonghui Wu, Zhifeng Chen
@@ -129,7 +142,7 @@
     - Zhenbo Sun, Huanqi Cao, Yuanwei Wang, Guanyu Feng, Shengqi Chen, Haojie Wang, Wenguang ChenAuthors Info & Claims
 
 
-### Sequence Parallelism
+#### Sequence Parallelism
 
 - Sequence parallelism: Long sequence training from system perspective [[pdf](https://arxiv.org/abs/2105.13120)]
     - Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), 2023, pp. 2391–2404
@@ -240,6 +253,6 @@
     - Wei Wang, Zhiquan Lai, Shengwei Li, Weijie Liu, Keshi Ge, Yujie Liu, Ao Shen, Dongsheng Li
 
 
-## Auto Parallelism
+### Auto Parallelism
 
-## Heterogeneous Parallelism
+### Heterogeneous Parallelism

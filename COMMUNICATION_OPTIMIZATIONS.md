@@ -1,0 +1,194 @@
+# COMMUNICATION OPTIMIZATIONS
+
+This section introduces systems and techniques for optimizing the collective communication performance of distributed LLM training. We first discuss collective communication libraries, which utilize both predefined and synthesized algorithms. Next, we explore com-munication scheduling techniques designed to reorganize communication operations to overlap with computation, thereby reducing delays and accelerating the training process. Finally, we delve into in-network aggregation (INA), which leverages the computational capabilities of network devices to perform aggregation operations, such as summing gradients of deep learning models.
+
+## Content
+- [Collective Communication](#collective-communication)
+  - Pre-Defined Collective Communication Algorithm
+  - Synthesized Collective Communication Algorithm
+- [Communication Scheduling](#communication-scheduling)
+  - FIFO-based Scheduling
+  - Priority-based Scheduling
+  - Decomposition-based Scheduling
+- [In-Network Aggregation](#in-network-aggregation)
+  - Ethernet-based Aggregation
+  - Infiniband-based Aggregation
+
+## Collective Communication
+- Open mpi: Goals, concept, and design of a next generation mpi implementation [[Paper]](https://link.springer.com/chapter/10.1007/978-3-540-30218-6_19) [[GitHub]](https://github.com/open-mpi/ompi)
+  - E. Gabriel, G. E. Fagg, G. Bosilca, T. Angskun, J. J. Dongarra, J. M. Squyres, V. Sahay, P. Kambadur, B. Barrett, A. Lumsdaine, R. H. Castain, D. J. Daniel, R. L. Graham, and T. S. Woodall
+  - Proceedings, 11th European PVM/MPI Users' Group Meeting, Budapest, Hungary, September 2004
+  - This paper presents the goals, concept, and design of Open MPI, a next-generation MPI implementation, and discusses its features and potential benefits.
+- Mpich2: A new start for mpi implementations [[Paper]](https://link.springer.com/chapter/10.1007/3-540-45825-5_5) [[GitHub]](https://github.com/pmodels/mpich)
+  - W. Gropp, E. Lusk, and R. Thakur
+  - Recent Advances in Parallel Virtual Machine and Message Passing Interface: 12th European PVM/MPI Users' Group Meeting Sorrento, Italy, September 18–21, 2005 Proceedings
+  - The paper introduces Mpich2 as a new start for MPI implementations and discusses its improvements and features.
+- The MVAPICH project: Evolution and sustainability of an open source production quality MPI library for HPC [[Paper]](http://pfigshare-u-files.s3.amazonaws.com/1193719/header.pdf)
+  - D. K. Panda, K. Tomko, K. Schulz, and A. Majumdar
+  - Workshop on Sustainable Software for Science: Practice and Experiences, held in conjunction with Int’l Conference on Supercomputing (WSSPE), 2013
+  - This paper discusses the evolution and sustainability of the mvapich project, an open source MPI library for HPC, and its importance in the scientific community.
+### Pre-Defined Collective Communication Algorithm
+- Bandwidth Optimal All-Reduce Algorithms for Clusters of Workstations [[Paper]](http://websrv.cs.fsu.edu/~xyuan/paper/09jpdc.pdf)
+  - Patarasuk, P., & Yuan, X.
+  - Journal of Parallel and Distributed Computing
+  - The paper presents algorithms for all-reduce operations in clusters of workstations to achieve optimal bandwidth.
+- Massively Scale Your Deep Learning Training with NCCL 2.4 [[Paper]](https://developer.nvidia.com/blog/massively-scale-deep-learning-training-nccl-2-4/) [[GitHub]](https://github.com/NVIDIA/nccl)
+  - Jeaugey, S.
+  - NVIDIA Developer Blog
+  - This blog post discusses how to use NCCL 2.4 to massively scale deep learning training.
+- Highly Scalable Deep Learning Training System with Mixed-Precision: Training ImageNet in Four Minutes [[Paper]](https://arxiv.org/abs/1807.11205)
+  - Jia, X., Song, S., He, W., Wang, Y., Rong, H., Zhou, F., Xie, L., Guo, Z., Yang, Y., Yu, L., et al.
+  - arXiv preprint
+  - The paper presents a highly scalable deep learning training system with mixed-precision, enabling fast training of ImageNet.
+- Massively Distributed SGD: Imagenet/Resnet-50 Training in a Flash [[Paper]](https://arxiv.org/abs/1811.05233)
+  - Mikami, H., Suganuma, H., Tanaka, Y., Kageyama, Y., et al.
+  - arXiv preprint
+  - The paper describes a method for massively distributed SGD to train Imagenet/Resnet - 50 quickly.
+- ACCL: Architecting Highly Scalable Distributed Training Systems with Highly Efficient Collective Communication Library [[Paper]](https://ieeexplore.ieee.org/abstract/document/9462480/)
+  - Dong, J., Song, S., Wang, S., Feng, F., Cao, Z., Pan, H., Tang, L., Li, P., Li, H., et al.
+  - IEEE Micro
+  - The paper introduces ACCL, a library for architecting highly scalable distributed training systems with efficient collective communication.
+- BlueConnect: Decomposing All-Reduce for Deep Learning on Heterogeneous Network Hierarchy [[Paper]](https://proceedings.mlsys.org/paper_files/paper/2019/file/0c8abcf158ed12d0dd94480681186fda-Paper.pdf)
+  - Cho, M., Finkler, U., Kung, D., & Hunter, H.
+  - Proceedings of Machine Learning and Systems
+  - The paper presents BlueConnect, which decomposes all - reduce for deep learning on heterogeneous network hierarchy.
+- Plink: Discovering and exploiting locality for accelerated distributed training on the public cloud [[Paper]](https://proceedings.mlsys.org/paper_files/paper/2020/file/eca986d585a03890a412587a2f5ccb43-Paper.pdf)
+  - Luo, L., West, P., Krishnamurthy, A., Ceze, L., & Nelson, J.
+  - Proc. of MLSys
+  - The paper introduces Plink, a system for discovering and exploiting network locality in datacenters for distributed training.
+### Synthesized Collective Communication Algorithm
+- GC3: An Optimizing Compiler for GPU Collective Communication [[Paper]](https://arxiv.org/pdf/2201.11840) [[GitHub]](https://github.com/microsoft/msccl-tools)
+  - Cowan, M., Maleki, S., Musuvathi, M., Saarikivi, O., & Xiong, Y.
+  - arXiv preprint
+  - The paper presents GC3, an optimizing compiler for GPU collective communication.
+- Synthesizing Optimal Collective Algorithms [[Paper]](https://arxiv.org/pdf/2008.08708)
+  - Cai, Z., Liu, Z., Maleki, S., Musuvathi, M., Mytkowicz, T., Nelson, J., & Saarikivi, O.
+  - Proceedings of the 26th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming
+  - The paper describes a method for synthesizing optimal collective algorithms.
+- TACCL: Guiding Collective Algorithm Synthesis Using Communication Sketches [[Paper]](https://www.usenix.org/system/files/nsdi23-shah.pdf) [[GitHub]](https://github.com/microsoft/taccl)
+  - Shah, A., Chidambaram, V., Cowan, M., Maleki, S., Musuvathi, M., Tmykowicz, T., Nelson, J., Saarikivi, O., & Singh, R.
+  - 20th USENIX Symposium on Networked Systems Design and Implementation (NSDI 23)
+  - The paper introduces TACCL, which uses communication sketches to guide the synthesis of collective algorithms.
+- Blink: Fast and Generic Collectives for Distributed ML [[Paper]](https://proceedings.mlsys.org/paper_files/paper/2020/file/cd3a9a55f7f3723133fa4a13628cdf03-Paper.pdf)
+  - Wang, G., Venkataraman, A., Phanishayee, N., Devanur, J., Thelin, J., & Stoica, I.
+  - Proceedings of Machine Learning and Systems
+  - This paper presents Blink, a system for fast and generic collectives in distributed machine learning.
+- Synthesizing Optimal Parallelism Placement and Reduction Strategies on Hierarchical Systems for Deep Learning [[Paper]](https://proceedings.mlsys.org/paper_files/paper/2022/file/f0f9e98bc2e2f0abc3e315eaa0d808fc-Paper.pdf)
+  - Xie, N., Norman, T., Grewe, D., & Vytiniotis, D.
+  - Proceedings of Machine Learning and Systems
+  - The paper describes a method for synthesizing optimal parallelism placement and reduction strategies for deep learning on hierarchical systems.## Communication Scheduling
+## Communication Scheduling
+### FIFO-based Scheduling
+- Poseidon: An Efficient Communication Architecture for Distributed Deep Learning on GPU Clusters [[Paper]](https://www.usenix.org/system/files/conference/atc17/atc17-zhang.pdf)
+  - Zhang, H., Zheng, Z., Xu, S., Dai, W., Ho, Q., Liang, X., Hu, Z., Wei, J., Xie, P., & Xing, E. P.
+  - 2017 USENIX Annual Technical Conference (USENIX ATC 17)
+  - This paper introduces Poseidon, an efficient communication architecture for distributed deep learning on GPU clusters.
+- GradientFlow: Optimizing Network Performance for Large-Scale Distributed DNN Training [[Paper]](https://ieeexplore.ieee.org/abstract/document/8922719)
+  - Sun, P., Wen, Y., Han, R., Feng, W., & Yan, S.
+  - IEEE Transactions on Big Data
+  - The paper presents GradientFlow, a system for optimizing network performance in large-scale distributed DNN training.
+- Pytorch distributed: Experiences on accelerating data parallel training [[Paper]](https://arxiv.org/abs/2006.15704) 
+  - Li, S., Zhao, Y., Varma, R., Salpekar, O., Noordhuis, P., Li, T., Paszke, A., Smith, J., Vaughan, B., Damania, P. et al.
+  - arXiv preprint
+  - This paper presents the experiences of Pytorch distributed in accelerating data parallel training.
+### Priority-based Scheduling
+- Priority-Based Parameter Propagation for Distributed DNN Training [[Paper]](https://proceedings.mlsys.org/paper_files/paper/2019/file/3ed923f9f88108cb066c6568d3df2666-Paper.pdf)
+  - Jayarajan, A., Wei, J., Gibson, G., Fedorova, A., & Pekhimenko, G.
+  - Proceedings of Machine Learning and Systems
+  - This paper discusses a priority-based parameter propagation method for distributed DNN training.
+- TicTac: Accelerating Distributed Deep Learning with Communication Scheduling [[Paper]](https://proceedings.mlsys.org/paper_files/paper/2019/file/94cb28874a503f34b3c4a41bddcea2bd-Paper.pdf) [[GitHub]](https://github.com/xldrx/tictac)
+  - Hashemi, S. H., Abdu Jyothi, S., & Campbell, R.
+  - Proceedings of Machine Learning and Systems
+  - The paper presents TicTac, a communication scheduling method for accelerating distributed deep learning.
+- A Generic Communication Scheduler for Distributed DNN Training Acceleration [[Paper]](http://yibozhu.com/doc/bytescheduler-sosp19.pdf)
+  - Peng, Y., Zhu, Y., Chen, Y., Bao, Y., Yi, B., Lan, C., Wu, C., & Guo, C.
+  - Proceedings of the 27th ACM Symposium on Operating Systems Principles
+  - This paper introduces a generic communication scheduler for accelerating distributed DNN training.
+- Preemptive All-Reduce Scheduling for Expediting Distributed DNN Training [[Paper]](https://i2.cs.hku.hk/~cwu/papers/yxbao-infocom20.pdf)
+  - Bao, Y., Peng, Y., Chen, Y., & Wu, C.
+  - IEEE INFOCOM 2020 - IEEE Conference on Computer Communications
+  - The paper discusses a preemptive all-reduce scheduling method for expediting distributed DNN training.
+- Accelerating distributed {MoE} training and inference with lina [[Paper]](https://www.usenix.org/system/files/atc23-li-jiamin.pdf)
+  - Li, J., Jiang, Y., Zhu, Y., Wang, C., & Xu, H.
+  - 2023 USENIX Annual Technical Conference (USENIX ATC 23)
+  - This paper discusses how to accelerate distributed MoE training and inference using lina.
+### Decomposition-based Scheduling
+- Breadth-first pipeline parallelism [[Paper]](https://proceedings.mlsys.org/paper_files/paper/2023/file/24e845415c1486dd2d582a9d639237f9-Paper-mlsys2023.pdf)
+  - Lamy-Poirier, J.
+  - Proceedings of Machine Learning and Systems, vol. 5, 2023
+  - This paper introduces Breadth-first pipeline parallelism, a technique for improving the efficiency of pipeline parallelism in machine learning training.
+- Fold3D: Rethinking and Parallelizing Computational and Communicational Tasks in the Training of Large DNN Models [[Paper]](https://ieeexplore.ieee.org/iel7/71/4359390/10050126.pdf) [[GitHub]](https://github.com/hku-systems/fold3d)
+  - Li, F., Zhao, S., Qing, Y., Chen, X., Guan, X., Wang, S., Zhang, G., & Cui, H.
+  - IEEE Transactions on Parallel and Distributed Systems
+  - This paper presents Fold3D, a method for rethinking and parallelizing computational and communicational tasks in the training of large DNN models.
+- A Multidimensional Communication Scheduling Method for Hybrid Parallel DNN Training [[Paper]](https://ieeexplore.ieee.org/abstract/document/10540313/)
+  - Li, S., Lu, K., Lai, Z., Liu, W., Ge, K., & Li, D.
+  - arXiv preprint
+  - The paper introduces a multidimensional communication scheduling method for hybrid parallel DNN training.
+- Overlap Communication with Dependent Computation via Decomposition in Large Deep Learning Models [[Paper]](https://dl.acm.org/doi/pdf/10.1145/3567955.3567959)
+  - Wang, S., Wei, J., Sabne, A., Davis, A., Ilbeyi, B., Hechtman, B., Chen, D., Murthy, K. S., Maggioni, M., Zhang, Q., et al.
+  - Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems
+  - This paper discusses a method for overlapping communication with dependent computation via decomposition in large deep learning models.
+- Better Together: Jointly Optimizing ML Collective Scheduling and Execution Planning Using SYNDICATE [[Paper]](https://www.usenix.org/system/files/nsdi23-mahajan.pdf)
+  - Mahajan, K., Chu, C. - H., Sridharan, S., & Akella, A.
+  - 20th USENIX Symposium on Networked Systems Design and Implementation (NSDI 23)
+  - The paper presents SYNDICATE, a method for jointly optimizing ML collective scheduling and execution planning.
+- Centauri: Enabling Efficient Scheduling for Communication-Computation Overlap in Large Model Training via Communication Partitioning [[Paper]](https://dl.acm.org/doi/abs/10.1145/3620666.3651379)
+  - Chen, C., Li, X., Zhu, Q., Duan, J., Sun, P., Zhang, X., & Yang, C.
+  - Proceedings of the 29th ACM International Conference on Architectural Support for Programming Languages and Operating Systems
+  - This paper introduces Centauri, a system for enabling efficient scheduling for communication-computation overlap in large model training via communication partitioning.
+- DEAR: Accelerating Distributed Deep Learning with Fine-Grained All-Reduce Pipelining [[Paper]](https://arxiv.org/pdf/2302.12445) [[GitHub]](https://github.com/lzhangbv/dear_pytorch)
+  - Zhang, L., Shi, S., Chu, X., Wang, W., Li, B., & Liu, C.
+  - 2023 IEEE 43rd International Conference on Distributed Computing Systems (ICDCS)
+  - The paper presents DEAR, a system for accelerating distributed deep learning with fine-grained all-reduce pipelining.
+- Breaking the computation and communication abstraction barrier in distributed machine learning workloads [[Paper]](https://dl.acm.org/doi/pdf/10.1145/3503222.3507778) [[GitHub]](https://github.com/parasailteam/coconet)
+  - Jangda, A., Huang, J., Liu, G., Sabet, A. H. N., Maleki, S., Miao, Y., Musuvathi, M., Mytkowicz, T., & Saarikivi, O.
+  - This paper discusses how to break the abstraction barrier between computation and communication in distributed machine learning workloads, aiming to improve performance and efficiency.
+- T3: Transparent tracking & triggering for fine-grained overlap of compute & collectives [[Paper]](https://ar5iv.org/abs/2401.16677)
+  - Suchita Pati, Shaizeen Aga, Mahzabeen Islam, Nuwan Jayasena, and Matthew D. Sinclair
+  - Proceedings of the 29th ACM International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS), Volume 2, 2024
+  - This paper presents T3, a system for transparent tracking and triggering to achieve fine-grained overlap of compute and collectives in distributed training, improving efficiency.
+- Automated tensor model parallelism with overlapped communication for efficient foundation model training [[Paper]](https://arxiv.org/pdf/2305.16121)
+  - Shulei Li, Zeyu Lai, Yifan Hao, Weizhe Liu, Kaisheng Ge, Xiaodong Deng, Da Li, and Kai Lu
+  - This paper proposes an automated tensor model parallelism approach with overlapped communication for efficient foundation model training, discussing its benefits and implementation details.
+- Optimizing large model training through overlapped activation recomputation [[Paper]](https://arxiv.org/pdf/2406.08756)
+  - Peng Chen, Wen Zhang, Shuyu He, Yang Gu, Zhen Peng, Kaibin Huang, Xiang Zhan, Wei Chen, Yu Zheng, Zhijie Wang et al.
+  - This paper discusses how to optimize large model training by overlapping activation recomputation with other computations, reducing training time and improving efficiency.
+- Out-of-Order Backprop: An Effective Scheduling Technique for Deep Learning [[Paper]](https://scholar.archive.org/work/qb2vj5zbsvdsbd5w4yr3okdsi4/access/wayback/https://dl.acm.org/doi/pdf/10.1145/3492321.3519563)
+  - Hyoukjun Oh, Jaewoong Lee, Hojoon Kim, and Jaeha Seo
+  - Proceedings of the Seventeenth European Conference on Computer Systems (EuroSys), 2022
+  - This paper discusses out-of-order backpropagation as an effective scheduling technique for deep learning.
+## In-Network Aggregation
+- Netagg: Using Middleboxes for Application-Specific On-Path Aggregation in Data Centres [[Paper]](https://dl.acm.org/doi/10.1145/2674005.2674996)
+  - Luo Mai, Lukas Rupprecht, Abdul Alim, Paolo Costa, Matteo Migliavacca, Peter Pietzuch, and Alexander L. Wolf
+  - Proceedings of the 10th ACM International Conference on Emerging Networking Experiments and Technologies (CoNEXT'14)
+  - This paper presents Netagg, a system using middleboxes for application-specific on-path aggregation in data centres.
+- Switchagg: A Further Step towards In-Network Computation [[Paper]](https://arxiv.org/pdf/1904.04024)
+  - F. Yang, Z. Wang, X. Ma, G. Yuan, and X. An
+  - Proceedings of the 2019 ACM/SIGDA International Symposium on Field-Programmable Gate Arrays
+  - This paper proposes Switchagg, which takes in-network computation further by integrating it with field-programmable gate arrays.
+- Camdoop: Exploiting In-Network Aggregation for Big Data Applications [[Paper]](https://www.usenix.org/system/files/conference/nsdi12/nsdi12-final11_0.pdf)
+  - Paolo Costa, Austin Donnelly, Antony Rowstron, and Greg O’Shea
+  - 9th USENIX Symposium on Networked Systems Design and Implementation (NSDI 12)
+  - This paper introduces Camdoop, which utilizes in-network aggregation for big data applications, improving performance and efficiency.
+- When In-Network Computing Meets Distributed Machine Learning [[Paper]](https://ieeexplore.ieee.org/abstract/document/10440596/)
+  - Haoyu Zhu, Wenqing Jiang, Qiang Hong, and Zhenyu Guo
+  - IEEE Network
+  - The paper discusses the intersection of in-network computing and distributed machine learning, exploring potential benefits and challenges.
+### Ethernet-based Aggregation
+- Scaling Distributed Machine Learning with In-Network Aggregation [[Paper]](https://www.usenix.org/system/files/nsdi21-sapio.pdf) [[GitHub]](https://github.com/p4lang/p4app-switchML)
+  - Alberto Sapio, Marco Canini, Chun-Yen Ho, Jacob Nelson, Panagiotis Kalnis, Changhoon Kim, Arvind Krishnamurthy, Mohammad Moshref, Dan R. K. Ports, and Peter Richtarik
+  - 18th USENIX Symposium on Networked Systems Design and Implementation (NSDI 21)
+  - The paper presents a method for scaling distributed machine learning with in-network aggregation.
+- Unlocking the Power of Inline Floating-Point Operations on Programmable Switches [[Paper]](https://www.usenix.org/system/files/nsdi22-paper-yuan.pdf)
+  - Yulong Yuan, Omar Alama, Jing Fei, Jacob Nelson, Dan R. K. Ports, Alberto Sapio, Marco Canini, and Nickolai S. Kim
+  - 19th USENIX Symposium on Networked Systems Design and Implementation (NSDI 22)
+  - This paper discusses how to unlock the power of inline floating-point operations on programmable switches.
+- NetReduce: RDMA-Compatible In-Network Reduction for Distributed DNN Training Acceleration [[Paper]](https://arxiv.org/abs/2009.09736)
+  - Songtao Liu, Qing Wang, Jinjing Zhang, Qiyuan Lin, Yixue Liu, Min Xu, Richard C. Cheung, and Jidong He
+  - arXiv preprint
+  - The paper presents NetReduce, an RDMA-compatible in-network reduction method for accelerating distributed DNN training.
+- Scalable Fully Pipelined Hardware Architecture for In-Network Aggregated AllReduce Communication [[Paper]](https://ieeexplore.ieee.org/abstract/document/9501248/)
+  - Yixue Liu, Jinjing Zhang, Songtao Liu, Qing Wang, Wei Dai, and Richard C. C. Cheung
+  - IEEE Transactions on Circuits and Systems I: Regular Papers
+  - This paper presents a scalable hardware architecture for in-network aggregated AllReduce communication.

@@ -260,66 +260,87 @@ We investigate various parallelism schemes proposed to enhance the utilization o
 - Mesh-TensorFlow: Deep Learning for Supercomputers [[Pdf]](https://arxiv.org/pdf/1811.02084) [[Code]](https://github.com/tensorflow/mesh)
     - Proceedings of the 32nd International Conference on Neural Information Processing Systems
     - Noam Shazeer, Youlong Cheng, Niki Parmar, Dustin Tran, Ashish Vaswani, Penporn Koanantakool, Peter Hawkins, HyoukJoong Lee, Mingsheng Hong, Cliff Young, Ryan Sepassi, Blake Hechtman
+
 - GSPMD: General and Scalable Parallelization for ML Computation Graphs [[Pdf]](https://arxiv.org/pdf/2105.04663)
     - Yuanzhong Xu, HyoukJoong Lee, Dehao Chen, Blake Hechtman, Yanping Huang, Rahul Joshi, Maxim Krikun, Dmitry Lepikhin, Andy Ly, Marcello Maggioni, Ruoming Pang, Noam Shazeer, Shibo Wang, Tao Wang, Yonghui Wu, Zhifeng Chen
+
 - Exploring Hidden Dimensions in Parallelizing Convolutional Neural Networks [[Pdf]](https://arxiv.org/pdf/1802.04924)
     - ICML 2018
     - Zhihao Jia, Sina Lin, Charles R. Qi, Alex Aiken
+
 - Alpa: Automating Inter- and Intra-Operator Parallelism for Distributed Deep Learning [[Pdf]](https://arxiv.org/pdf/2201.12023)
     - OSDI 2022
     - Lianmin Zheng, Zhuohan Li, Hao Zhang, Yonghao Zhuang, Zhifeng Chen, Yanping Huang, Yida Wang, Yuanzhong Xu, Danyang Zhuo, Eric P. Xing, Joseph E. Gonzalez, Ion Stoica
+
 - Beyond Data and Model Parallelism for Deep Neural Networks [[Pdf]](https://arxiv.org/pdf/1807.05358)
     - Proceedings of Machine Learning and Systems 2019
     - Zhihao Jia, Matei Zaharia, Alex Aiken
+
 - Supporting Very Large Models using Automatic Dataflow Graph Partitioning [[Pdf]](https://dl.acm.org/doi/10.1145/3302424.3303953)
     - Proceedings of the Fourteenth EuroSys Conference 2019
     - Minjie Wang, Chien-chin Huang, Jinyang Li
+
 - HyPar: Towards Hybrid Parallelism for Deep Learning Accelerator Array [[Pdf]](https://arxiv.org/pdf/1901.02067)
     -  International Symposium on High-Performance Computer Architecture 2019
     - Linghao Song, Jiachen Mao, Youwei Zhuo, Xuehai Qian, Hai Li, Yiran Chen
+
 - Automap: Towards Ergonomic Automated Parallelism for ML Models [[Pdf]](https://arxiv.org/pdf/2112.02958)
     - Michael Schaarschmidt, Dominik Grewe, Dimitrios Vytiniotis, Adam Paszke, Georg Stefan Schmid, Tamara Norman, James Molloy, Jonathan Godwin, Norman Alexander Rink, Vinod Nair, Dan Belov
+
 - Slapo: A Schedule Language for Progressive Optimization of Large Deep Learning Model Training [[Pdf]](https://arxiv.org/pdf/2302.08005)
     - ASPLOS 2024
     - Hongzheng Chen, Cody Hao Yu, Shuai Zheng, Zhen Zhang, Zhiru Zhang, Yida Wang
+
 - TensorOpt: Exploring the Tradeoffs in Distributed DNN Training with Auto-Parallelism [[Pdf]](https://arxiv.org/pdf/2004.10856)
     - Zhenkun Cai, Kaihao Ma, Xiao Yan, Yidi Wu, Yuzhen Huang, James Cheng, Teng Su, Fan Yu
     - IEEE Transactions on Parallel and Distributed Systems 2021
+
 - PipeDream: Fast and Efficient Pipeline Parallel DNN Training [[Pdf]](https://arxiv.org/pdf/1806.03377)
     - Aaron Harlap, Deepak Narayanan, Amar Phanishayee, Vivek Seshadri, Nikhil Devanur, Greg Ganger, Phil Gibbons
     - SOSP '19: Proceedings of the 27th ACM Symposium on Operating Systems Principles
+
 - DAPPLE: A Pipelined Data Parallel Approach for Training Large Models [[Pdf]](https://arxiv.org/pdf/2007.01045)
     - Shiqing Fan, Yi Rong, Chen Meng, Zongyan Cao, Siyu Wang, Zhen Zheng, Chuan Wu, Guoping Long, Jun Yang, Lixue Xia, Lansong Diao, Xiaoyong Liu, Wei Lin
     - PPoPP '21: Proceedings of the 26th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming
+
 - Autopipe: A fast pipeline parallelism approach with balanced partitioning and micro-batch slicing
     - Weijie Liu, Zhiquan Lai, Shengwei Li, Yabo Duan, Keshi Ge, Dongsheng Li
     - 2022 IEEE International Conference on Cluster Computing (CLUSTER)
+
 - Device Placement Optimization with Reinforcement Learning [[Pdf]](https://arxiv.org/pdf/1706.04972)
     - Azalia Mirhoseini, Hieu Pham, Quoc V. Le, Benoit Steiner, Rasmus Larsen, Yuefeng Zhou, Naveen Kumar, Mohammad Norouzi, Samy Bengio, Jeff Dean
     - ICML'17: Proceedings of the 34th International Conference on Machine learning
+
 - Spotlight: Optimizing Device Placement for Training Deep Neural Networks [[Pdf]]()
     - Yuanxiang Gao, Li Chen, Baochun Li
     - Proceedings of the 35th International Conference on Machine Learning, 2018
+
 - Efficient Algorithms for Device Placement of DNN Graph Operators [[Pdf]](https://arxiv.org/pdf/2006.16423)
     - Jakub Tarnawski, Amar Phanishayee, Nikhil R. Devanur, Divya Mahajan, Fanny Nina Paravecino
     - NIPS'20: Proceedings of the 34th International Conference on Neural Information Processing Systems
+
 - Piper: Multidimensional Planner for DNN Parallelization
- [[Pdf]]()
     - Jakub M. Tarnawski, Deepak Narayanan, Amar Phanishayee
     - NIPS'21: Proceedings of the 35th International Conference on Neural Information Processing Systems
+
 - Unity: Accelerating DNN Training Through Joint Optimization of Algebraic Transformations and Parallelization [[Pdf]](https://www.usenix.org/system/files/osdi22-unger.pdf)
     - Colin Unger, Stanford University; Zhihao Jia, Carnegie Mellon University and Meta; Wei Wu, Los Alamos National Laboratory and NVIDIA; Sina Lin, Microsoft; Mandeep Baines and Carlos Efrain Quintero Narvaez, Meta; Vinay Ramakrishnaiah, Nirmal Prajapati, Pat McCormick, and Jamaludin Mohd-Yusof, Los Alamos National Laboratory; Xi Luo, SLAC National Accelerator Laboratory; Dheevatsa Mudigere, Jongsoo Park, and Misha Smelyanskiy, Meta; Alex Aiken, Stanford University
     - OSDI '22: USENIX Symposium on Operating Systems Design and Implementation
+
 - Aceso: Efficient Parallel DNN Training through Iterative Bottleneck Alleviation [[Pdf]](https://arxiv.org/pdf/1809.02839)
     - Chi-Chung Chen, Chia-Lin Yang, Hsiang-Yun Cheng
     - EuroSys '24: Proceedings of the Nineteenth European Conference on Computer Systems
+
 - PartIR: Composing SPMD Partitioning Strategies for Machine Learning [[Pdf]](https://arxiv.org/pdf/2401.11202)
     - Sami Alabed, Daniel Belov, Bart Chrzaszcz, Juliana Franco, Dominik Grewe, Dougal Maclaurin, James Molloy, Tom Natan, Tamara Norman, Xiaoyue Pan, Adam Paszke, Norman A. Rink, Michael Schaarschmidt, Timur Sitdikov, Agnieszka Swietlik, Dimitrios Vytiniotis, Joel Wee
+
 - nnScaler: Constraint-Guided Parallelization Plan Generation for Deep Learning Training [[Pdf]](https://www.usenix.org/system/files/osdi24-lin-zhiqi.pdf)
     - Zhiqi Lin, University of Science and Technology of China; Youshan Miao, Quanlu Zhang, Fan Yang, and Yi Zhu, Microsoft Research; Cheng Li, University of Science and Technology of China; Saeed Maleki, xAI; Xu Cao, Ning Shang, Yilei Yang, Weijiang Xu, and Mao Yang, Microsoft Research; Lintao Zhang, BaseBit Technologies; Lidong Zhou, Microsoft Research
     - OSDI '24: USENIX Symposium on Operating Systems Design and Implementation
+
 - OneFlow: Redesign the Distributed Deep Learning Framework from Scratch [[Pdf]](https://arxiv.org/pdf/2110.15032) [[Code]](https://github.com/Oneflow-Inc/oneflow)
     - Jinhui Yuan, Xinqi Li, Cheng Cheng, Juncheng Liu, Ran Guo, Shenghang Cai, Chi Yao, Fei Yang, Xiaodong Yi, Chuan Wu, Haoran Zhang, Jie Zhao
+
 - AutoDDL: Automatic Distributed Deep Learning with Near-Optimal Bandwidth Cost [[Pdf]](https://arxiv.org/pdf/2301.06813)
     - Jinfan Chen, Shigang Li, Ran Gun, Jinhui Yuan, Torsten Hoefler
     - TPDS '24: IEEE Transactions on Parallel and Distributed Systems

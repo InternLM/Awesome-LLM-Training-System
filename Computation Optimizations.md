@@ -5,14 +5,14 @@ Today’s AI accelerators offer unprecedented computational capabilities in term
 
 ## Content
 - Systems and techniques of computation optimizations:
-  - Operator Optimizations
-    - Manually Optimizations
-    - Automatic Optimizations
-  - Mixed-precision Training
-    - 16-Bit Floating Point
-    - Sub-8-Bit Floating Point
-    - Low-Bit Fixed Point
-
+  - [Operator Optimizations](#operator-optimizations)
+    - [Manually Optimizations](#manually-optimizations)
+    - [Automatic Optimizations](#automatic-optimizations)
+  - [Mixed-precision Training](#mixed-precision-training)
+    - [16-Bit Floating Point](#16-bit-floating-point)
+    - [Sub-8-Bit Floating Point](#sub-8-bit-floating-point)
+    - [Low-Bit Fixed Point](#low-bit-fixed-point)
+## Operator Optimizations
 ### Manually Optimizations
 - FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness [[Paper]](https://arxiv.org/abs/2205.14135) [[GitHub]](https://github.com/Dao-AILab/flash-attention)
   - Tri Dao, Daniel Y. Fu, Stefano Ermon, Atri Rudra, Christopher Ré.
@@ -65,7 +65,7 @@ Today’s AI accelerators offer unprecedented computational capabilities in term
 - Jit-q: Justin-time quantization with processing-in-memory for efficient ml training [[Paper]](https://arxiv.org/pdf/2311.05034)
   - M. Ibrahim, S. Aga, A. Li, S. Pati, and M. Islam
   - Proceedings of Machine Learning and Systems, vol. 6, pp. 46–59, 2024.
-
+## Mixed-precision Training
 ### 16-Bit Floating Point
 - Mixed Precision Training
  [[Paper]](https://arxiv.org/abs/1710.03740)
